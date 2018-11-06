@@ -3,9 +3,8 @@ services:
   web:
     image: nginx
     volumes:
-      - /opt/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - /opt/nginx/conf.d:/etc/nginx/conf.d
-      - /opt/www:/opt/www
+      - /mnt/nassau/docker/nginx/www:/usr/share/nginx/html
+      - /mnt/nassau/docker/nginx/log:/var/log/nginx
     deploy:
       replicas: 2
       restart_policy:
