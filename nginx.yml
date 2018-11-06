@@ -6,7 +6,7 @@ services:
       - /mnt/nassau/docker/nginx/www:/usr/share/nginx/html
       - /mnt/nassau/docker/nginx/log:/var/log/nginx
     deploy:
-      replicas: 2
+      replicas: 1
       restart_policy:
         condition: on-failure
     ports:
