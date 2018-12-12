@@ -1,5 +1,6 @@
 mqtt:
     image: eclipse-mosquitto:latest
+    container_name: my-mqtt-container
     ports:
         - 1883:1883
         - 9001:9001
