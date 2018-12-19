@@ -1,6 +1,7 @@
 mqtt:
     image: eclipse-mosquitto:latest
     container_name: my-mqtt-container
+    restart: unless-stopped
     ports:
         - 1883:1883
         - 9001:9001
