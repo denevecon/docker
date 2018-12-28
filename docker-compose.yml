@@ -25,4 +25,5 @@ services:
             - webnet
 
     networks:
-        webnet:
+        webnet: {}
+        
