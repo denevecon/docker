@@ -1,14 +1,24 @@
 # Docker Compose Yaml 
+version: "3"
+services:
+    mqtt:
+        image: eclipse-mosquitto:1.5.5
+        hostname: mosquitto
+        container_name: my-mqtt-container
+        restart: unless-stopped
+        ports:
+            - 1883:1883
+            - 9001:9001
+        volumes:
+        - ./config/mqtt:/mqtt/config
+        - ./log/mqtt:/mqtt/log
+        - ./data/mqtt:/mqtt/data/
 
-mqtt:
-    image: eclipse-mosquitto:1.5.5
-    hostname: mosquitto
-    container_name: my-mqtt-container
-    restart: unless-stopped
-    ports:
-        - 1883:1883
-        - 9001:9001
-    volumes:
-    - ./config/mqtt:/mqtt/config
-    - ./log/mqtt:/mqtt/log
-    - ./data/mqtt:/mqtt/data/
+    web:
+        image: nginx
+        container_name: my-nginx-container
+        restart: always
+        ports:
+            - 80:80
+            - 443:443
+        
