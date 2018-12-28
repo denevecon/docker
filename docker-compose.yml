@@ -1,5 +1,5 @@
 # Docker Compose Yaml 
-version: "3"
+version: "3.5"
 services:
     mqtt:
         image: eclipse-mosquitto:1.5.5
@@ -23,6 +23,6 @@ services:
             - 443:443
         networks:
             - webnet
-            
+
     networks:
         webnet:
