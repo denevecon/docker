@@ -1,7 +1,8 @@
 # Docker Compose Yaml 
 
 mqtt:
-    image: eclipse-mosquitto:latest
+    image: eclipse-mosquitto:1.5.5
+    hostname: mosquitto
     container_name: my-mqtt-container
     restart: unless-stopped
     ports:
