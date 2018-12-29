@@ -29,5 +29,16 @@ services:
         networks:
             - webnet
 
+    homeassistant:
+        container_name: home-assistant
+        image: homeassistant/home-assistant
+        volumes:
+            - ./config/home-assistant:/config
+#            - /etc/localtime:/etc/localtime:ro
+        restart: always
+        ports:
+            - 8123:8123
+
+
 networks:
     webnet: {}
