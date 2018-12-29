@@ -34,7 +34,7 @@ services:
         image: homeassistant/home-assistant
         volumes:
             - ./config/home-assistant:/config
-#            - /etc/localtime:/etc/localtime:ro
+#           - /etc/localtime:/etc/localtime:ro
         restart: always
         ports:
             - 8123:8123
