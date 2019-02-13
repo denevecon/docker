@@ -39,6 +39,25 @@ services:
         ports:
             - 8123:8123
 
+    influxdb:
+        build: influxdb
+        env_file: configuration.env
+        ports:
+            - '8086:8086'
+        volumes:
+            - influxdb_data:/var/lib/influxdb
+    
+    grafana:
+        build: grafana
+        env_file: configuration.env
+        links:
+            - influxdb
+        ports:
+            - '3000:3000'
+        volumes:
+            - grafana_data:/var/lib/grafana
 
 networks:
     webnet: {}
+    grafana_data: {}
+    influxdb_data: {}
