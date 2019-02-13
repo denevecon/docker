@@ -1,0 +1,248 @@
+[
+    {
+        "id": "7fd43d82.f69aec",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ee570e6b.51ae9",
+        "type": "comment",
+        "z": "7fd43d82.f69aec",
+        "name": "My first NR flow",
+        "info": "This is my first Node Red flow \nHappy to see more of it !",
+        "x": 225.5,
+        "y": 138,
+        "wires": []
+    },
+    {
+        "id": "8cba5dc1.dc0648",
+        "type": "inject",
+        "z": "7fd43d82.f69aec",
+        "name": "",
+        "topic": "",
+        "payload": "Hello World ! My first NR flow !",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 143.5,
+        "y": 290,
+        "wires": [
+            [
+                "f061daab.46ad98"
+            ]
+        ]
+    },
+    {
+        "id": "f061daab.46ad98",
+        "type": "debug",
+        "z": "7fd43d82.f69aec",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 445.5,
+        "y": 373,
+        "wires": []
+    },
+    {
+        "id": "e4367b8.4664b08",
+        "type": "forecastio in",
+        "z": "7fd43d82.f69aec",
+        "forecastio": "",
+        "name": "Den Haag",
+        "key": "",
+        "lon": "4.26161",
+        "lat": "52.07236",
+        "date": "",
+        "time": "",
+        "units": "si",
+        "x": 120.5,
+        "y": 498,
+        "wires": [
+            [
+                "e3c5834e.726388",
+                "f061daab.46ad98"
+            ]
+        ]
+    },
+    {
+        "id": "e3c5834e.726388",
+        "type": "function",
+        "z": "7fd43d82.f69aec",
+        "name": "If Weather",
+        "func": "if (msg.data.currently.summary === \"Partly Cloudy\") {\n    msg.payload = \"Bingo\"\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 424.5,
+        "y": 460,
+        "wires": [
+            [
+                "f061daab.46ad98"
+            ]
+        ]
+    },
+    {
+        "id": "bc2cc4ee.b6455",
+        "type": "mqtt in",
+        "z": "7fd43d82.f69aec",
+        "name": "",
+        "topic": "owntracks/#",
+        "qos": "2",
+        "broker": "18419ac9.250c6d",
+        "x": 134.5,
+        "y": 652,
+        "wires": [
+            [
+                "ce4c730d.be97"
+            ]
+        ]
+    },
+    {
+        "id": "95808b29.ec92",
+        "type": "debug",
+        "z": "7fd43d82.f69aec",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 442.5,
+        "y": 603,
+        "wires": []
+    },
+    {
+        "id": "ce4c730d.be97",
+        "type": "json",
+        "z": "7fd43d82.f69aec",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 222.5,
+        "y": 582,
+        "wires": [
+            [
+                "b7536cc8.6d6818"
+            ]
+        ]
+    },
+    {
+        "id": "b7536cc8.6d6818",
+        "type": "switch",
+        "z": "7fd43d82.f69aec",
+        "name": "User",
+        "property": "payload.tid",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "CN",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "HF",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 297.5,
+        "y": 669,
+        "wires": [
+            [
+                "9117acb.418645"
+            ],
+            [
+                "26ea634a.c66c2c"
+            ]
+        ]
+    },
+    {
+        "id": "26ea634a.c66c2c",
+        "type": "debug",
+        "z": "7fd43d82.f69aec",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 405.5,
+        "y": 730,
+        "wires": []
+    },
+    {
+        "id": "9117acb.418645",
+        "type": "change",
+        "z": "7fd43d82.f69aec",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.note",
+                "pt": "msg",
+                "to": "Message from Coert",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 405.5,
+        "y": 533,
+        "wires": [
+            [
+                "95808b29.ec92",
+                "898981c6.3043a8"
+            ]
+        ]
+    },
+    {
+        "id": "898981c6.3043a8",
+        "type": "prowl",
+        "z": "7fd43d82.f69aec",
+        "title": "Prowl",
+        "priority": 0,
+        "url": "",
+        "name": "",
+        "x": 474.5,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "18419ac9.250c6d",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "mosquitto.local.de-neve.nl",
+        "port": "1883",
+        "clientid": "coert/sensor",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    }
+]

@@ -39,6 +39,13 @@ services:
         ports:
             - 8123:8123
 
+    node-red:
+        image: nodered/node-red-docker
+        container_name: my-rodened
+        restart: always
+        ports:
+            - 1880:1880
+
     influxdb:
         build: influxdb
         env_file: configuration.env
