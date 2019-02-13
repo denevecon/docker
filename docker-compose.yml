@@ -45,7 +45,7 @@ services:
         ports:
             - '8086:8086'
         volumes:
-            - influxdb_data:/var/lib/influxdb
+            - /Volumes/docker/docker/influxdb_data:/var/lib/influxdb
     
     grafana:
         build: grafana
@@ -55,11 +55,11 @@ services:
         ports:
             - '3000:3000'
         volumes:
-            - grafana_data:/var/lib/grafana
+            - /Volumes/docker/docker/grafana_data:/var/lib/grafana
 
 networks:
     webnet: {}
 
-volumes:
-    grafana_data: {}
-    influxdb_data: {}
+#volumes:
+#    grafana_data: {}
+#    influxdb_data: {}
