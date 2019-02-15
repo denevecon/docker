@@ -45,6 +45,8 @@ services:
         restart: always
         ports:
             - 1880:1880
+        volumes:
+            - /Volumes/docker/docker/node-red-data:/data
 
     influxdb:
         build: influxdb
