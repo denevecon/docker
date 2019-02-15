@@ -40,7 +40,8 @@ services:
             - 8123:8123
 
     node-red:
-        image: nodered/node-red-docker
+#        image: nodered/node-red-docker
+        build: node-red
         container_name: my-rodened
         restart: always
         ports:
