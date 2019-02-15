@@ -40,7 +40,6 @@ services:
             - 8123:8123
 
     node-red:
-#        image: nodered/node-red-docker
         build: node-red
         container_name: my-rodened
         restart: always
@@ -55,7 +54,7 @@ services:
         ports:
             - '8086:8086'
         volumes:
-            - /Volumes/docker/docker/influxdb_data:/var/lib/influxdb
+            - /Volumes/docker/docker/influxdb-data:/var/lib/influxdb
     
     grafana:
         build: grafana
@@ -65,7 +64,7 @@ services:
         ports:
             - '3000:3000'
         volumes:
-            - /Volumes/docker/docker/grafana_data:/var/lib/grafana
+            - /Volumes/docker/docker/grafana-data:/var/lib/grafana
 
 networks:
     webnet: {}
