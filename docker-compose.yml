@@ -66,25 +66,38 @@ services:
         volumes:
             - /Volumes/docker/docker/grafana-data:/var/lib/grafana
 
+    # openhab:
+    #     image: "openhab/openhab:2.4.0"
+    #     env_file: configuration.env
+    #     restart: always
+    #     network_mode: host
+    #     volumes:
+    #         - "/etc/localtime:/etc/localtime:ro"
+    #         - "/etc/timezone:/etc/timezone:ro"
+    #         - "openhab_addons:/openhab/addons"
+    #         - "openhab_conf:/openhab/conf"
+    #         - "openhab_userdata:/openhab/userdata"
+
     openhab:
         image: "openhab/openhab:2.4.0"
         env_file: configuration.env
         restart: always
         network_mode: host
         volumes:
-            - "/etc/localtime:/etc/localtime:ro"
-            - "/etc/timezone:/etc/timezone:ro"
-            - "openhab_addons:/openhab/addons"
-            - "openhab_conf:/openhab/conf"
-            - "openhab_userdata:/openhab/userdata"
+        - "/etc/localtime:/etc/localtime:ro"
+        - "/etc/timezone:/etc/timezone:ro"
+        - "./openhab_addons:/openhab/addons"
+        - "./openhab_conf:/openhab/conf"
+        - "./openhab_userdata:/openhab/userdata"
 
-volumes:
-    openhab_addons:
-        driver: local
-    openhab_conf:
-        driver: local
-    openhab_userdata:
-        driver: local
+
+# volumes:
+#     openhab_addons:
+#         driver: local
+#     openhab_conf:
+#         driver: local
+#     openhab_userdata:
+#         driver: local
 
 networks:
     webnet: {}
