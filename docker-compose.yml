@@ -83,6 +83,9 @@ services:
         env_file: configuration.env
         restart: always
         network_mode: host
+        ports:
+            - '8080:8080'
+            - '8443:8443'
         volumes:
         # - "/etc/localtime:/etc/localtime:ro"
         # - "/etc/timezone:/etc/timezone:ro"
