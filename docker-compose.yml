@@ -52,7 +52,7 @@ services:
         build: influxdb
         env_file: configuration.env
         ports:
-            - '8086:8086'
+            - 8086:8086
         volumes:
             - /Volumes/docker/docker/influxdb-data:/var/lib/influxdb
     
@@ -62,7 +62,7 @@ services:
         links:
             - influxdb
         ports:
-            - '3000:3000'
+            - 3000:3000
         volumes:
             - /Volumes/docker/docker/grafana-data:/var/lib/grafana
 
@@ -82,10 +82,10 @@ services:
         image: "openhab/openhab:2.4.0"
         env_file: configuration.env
         restart: always
-        network_mode: host
+    #    network_mode: host
         ports:
-            - '8080:8080'
-            - '8443:8443'
+            - 8080:8080
+            - 8443:8443
         volumes:
         # - "/etc/localtime:/etc/localtime:ro"
         # - "/etc/timezone:/etc/timezone:ro"
