@@ -50,14 +50,18 @@ services:
 
     influxdb:
         build: influxdb
+        container_name: influxdb
         env_file: configuration.env
         ports:
             - 8086:8086
+        networks:
+            - influxdb
         volumes:
             - /Volumes/docker/docker/influxdb-data:/var/lib/influxdb
     
     grafana:
         build: grafana
+        container_name: grafana
         env_file: configuration.env
         links:
             - influxdb
@@ -92,6 +96,7 @@ services:
 
 networks:
     webnet: {}
+    influxdb: {}
 
 #volumes:
 #    grafana_data: {}
