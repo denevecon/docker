@@ -72,8 +72,8 @@ services:
             - influxdb
         depends_on:
             - influxdb
-        volumes:
-            - /Volumes/docker/docker/chronograf/data:/var/lib/chronograf/
+        # volumes:
+        #     - /Volumes/docker/docker/chronograf/data:/var/lib/chronograf/
     
     # grafana:
     #     build: grafana
