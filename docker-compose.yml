@@ -52,17 +52,29 @@ services:
         build: influxdb
         container_name: influxdb
         env_file: configuration.env
+        restart: always
         ports:
             - 8086:8086
         networks:
             - influxdb
         volumes:
             - /Volumes/docker/docker/influxdb-data:/var/lib/influxdb
+
+    chronograf:
+        image: chronograf
+        container_name: chronograf
+        env_file: configuration.env
+        restart: always
+        ports:
+            - 8888:8888
+        networks:
+            - influxdb
     
     grafana:
         build: grafana
         container_name: grafana
         env_file: configuration.env
+        restart: always
         links:
             - influxdb
         ports:
