@@ -14,7 +14,7 @@ services:
         volumes:
         - ./config/mqtt:/mqtt/config
         - /Volumes/docker/docker/mqtt/log:/mosquitto/log
-        - ./data/mqtt:/mqtt/data/
+        - /Volumes/docker/docker/mqtt/data:/mosquitto/data/
 
     web:
         image: nginx:1.15
