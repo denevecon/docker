@@ -55,10 +55,12 @@ services:
         restart: always
         ports:
             - 8086:8086
+            - 8082:8082
         networks:
             - influxdb
         volumes:
             - /Volumes/docker/docker/influxdb-data:/var/lib/influxdb
+            - /Volumes/docker/docker/influxdb/config:/etc/influxdb
 
     chronograf:
         image: chronograf
@@ -71,6 +73,8 @@ services:
             - influxdb
         depends_on:
             - influxdb
+        volumes:
+            - /Volumes/docker/docker/chronograf/data:/var/lib/chronograf/
     
     grafana:
         build: grafana
