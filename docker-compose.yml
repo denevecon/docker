@@ -30,7 +30,8 @@ services:
             - webnet
 
     node-red:
-        build: node-red
+        build: ./images/node-red
+        image: node-red
         container_name: my-node-red
         restart: always
         ports:
@@ -40,6 +41,7 @@ services:
 
     influxdb:
         build: influxdb
+        image: influxdb
         container_name: influxdb
         env_file: configuration.env
         restart: always
