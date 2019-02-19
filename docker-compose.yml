@@ -12,7 +12,6 @@ services:
         networks: 
             - webnet
         volumes:
-        - ./config/mqtt:/mqtt/config
         - /Volumes/docker/docker/mqtt/log:/mosquitto/log
         - /Volumes/docker/docker/mqtt/data:/mosquitto/data/
 
@@ -81,7 +80,7 @@ services:
             - 3000:3000
         volumes:
             - /Volumes/docker/docker/grafana/data:/var/lib/grafana
-
+            - /Volumes/docker/docker/grafana/log:/var/log/grafana
 
 networks:
     webnet: {}
