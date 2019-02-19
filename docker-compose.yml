@@ -59,7 +59,7 @@ services:
         networks:
             - influxdb
         volumes:
-            - /Volumes/docker/docker/influxdb-data:/var/lib/influxdb
+            - /Volumes/docker/docker/influxdb/data:/var/lib/influxdb
 
     chronograf:
         image: chronograf
