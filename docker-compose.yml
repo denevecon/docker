@@ -13,7 +13,7 @@ services:
             - webnet
         volumes:
         - ./config/mqtt:/mqtt/config
-        - /Volumes/docker/docker/mqtt/log:/mqtt/log
+        - /Volumes/docker/docker/mqtt/log:/mosquitto/log
         - ./data/mqtt:/mqtt/data/
 
     web:
