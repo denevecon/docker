@@ -63,8 +63,8 @@ services:
     chronograf:
         image: chronograf
         container_name: chronograf
-        env_file: configuration.env
         restart: always
+        entrypoint: 'chronograf --influxdb-url=http://influxdb:8086'
         ports:
             - 8888:8888
         networks:
