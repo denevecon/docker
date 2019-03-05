@@ -12,8 +12,9 @@ services:
         networks: 
             - webnet
         volumes:
-        - /Volumes/docker/docker/mqtt/log:/mosquitto/log
-        - /Volumes/docker/docker/mqtt/data:/mosquitto/data/
+        - /Volumes/docker/docker/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+        - /Volumes/docker/docker/mosquitto/log:/mosquitto/log
+        - /Volumes/docker/docker/mosquitto/data:/mosquitto/data/
 
     web:
         image: nginx:1.15
