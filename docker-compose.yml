@@ -92,6 +92,7 @@ services:
             - /Volumes/docker/docker/mongo/data:/data/db  
 
     elasticsearch:
+        container_name: elasticsearch
         image: docker.elastic.co/elasticsearch/elasticsearch:6.8.5
         networks:
             - lognet
