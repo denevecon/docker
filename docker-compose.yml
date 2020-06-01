@@ -83,6 +83,12 @@ services:
             - /Volumes/docker/docker/grafana/data:/var/lib/grafana
             - /Volumes/docker/docker/grafana/log:/var/log/grafana
 
+    mongodb:
+        container_name: mongo
+        image: mongo:3
+        volumes:
+            - /Volumes/docker/docker/mongo/data:/data/db        
+
 networks:
     webnet: {}
     influxdb: {}
