@@ -110,6 +110,39 @@ services:
                 hard: -1
 #        mem_limit: 1g      
 
+    graylog:
+        container_name: graylog
+        image: graylog/graylog:3.3
+        volumes:
+            - /Volumes/docker/docker/graylog/journal:/usr/share/graylog/data/journal    
+        environment:
+            # CHANGE ME!
+            #- GRAYLOG_PASSWORD_SECRET=somepasswordpepper
+            # Password: admin
+            #- GRAYLOG_ROOT_PASSWORD_SHA2=d07cf09e0d9b56c755e2cc97147c8fc63bfd98ea08fac925d40587c5880222f7
+            #- GRAYLOG_WEB_ENDPOINT_URI=http://127.0.0.1:9000/api
+            - GRAYLOG_HTTP_EXTERNAL_URI=http://192.168.178.44:9002/
+        links:
+            - mongodb:mongo
+            - elasticsearch
+        depends_on:
+            - mongodb
+            - elasticsearch
+        networks:
+            - lognet
+        ports:
+            # Graylog web interface and REST API
+            - 9002:9000
+            # Syslog TCP
+            - 5140:5140
+            # Syslog UDP
+            - 5140:5140/udp
+            # GELF TCP
+            - 12201:12201
+            # GELF UDP
+            - 12201:12201/udp
+
+
 networks:
     webnet: {}
     lognet: {}
