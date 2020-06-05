@@ -138,6 +138,10 @@ services:
             - 5140:5140
             # Syslog UDP
             - 5140:5140/udp
+            # Syslog TCP
+            - 5141:5141
+            # Syslog UDP
+            - 5141:5141/udp
             # GELF TCP
             - 12201:12201
             # GELF UDP
