@@ -8,7 +8,7 @@ services:
         restart: always
         ports:
             - 1883:1883
-            - 9011:9001
+            - 9001:9001
         networks: 
             - webnet
         volumes:
@@ -175,7 +175,7 @@ services:
     cerebro:
         image: lmenezes/cerebro:0.9.0
         ports:
-            - 9001:9000
+            - 9003:9000
         links:
             - elasticsearch
         depends_on:
