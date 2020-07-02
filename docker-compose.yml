@@ -43,7 +43,8 @@ services:
         build: ./images/influxdb
         image: influxdb
         container_name: influxdb
-        env_file: configuration.env
+        env_file: 
+            - ./influxdb.env
         restart: always
         ports:
             - 8086:8086
@@ -52,6 +53,10 @@ services:
             - influxdb
         volumes:
             - /Volumes/docker/docker/influxdb/data:/var/lib/influxdb
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "100M"
 
     chronograf:
         image: chronograf
