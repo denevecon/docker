@@ -94,11 +94,11 @@ services:
     elasticsearch:
         container_name: elasticsearch
         image: docker.elastic.co/elasticsearch/elasticsearch:6.8.5
-        mem_limit: 4g
+        mem_limit: 4g       # Will only run when version is set to 2.x
         restart: always 
         networks:
             - lognet
-        volumes:
+        volumes:    
             - /Volumes/docker/docker/elasticsearch/data:/usr/share/elasticsearch/data
         env_file:
             - ./elasticsearch.env    
@@ -119,15 +119,18 @@ services:
         container_name: graylog
         image: graylog/graylog:3.3
         volumes:
-            - /Volumes/docker/docker/graylog/journal:/usr/share/graylog/data/journal    
-        environment:
-            # CHANGE ME!
-            #- GRAYLOG_PASSWORD_SECRET=somepasswordpepper
-            # Password: admin
-            #- GRAYLOG_ROOT_PASSWORD_SHA2=d07cf09e0d9b56c755e2cc97147c8fc63bfd98ea08fac925d40587c5880222f7
-            #- GRAYLOG_WEB_ENDPOINT_URI=http://127.0.0.1:9000/api
-            - GRAYLOG_ROOT_TIMEZONE=Europe/Amsterdam
-            - GRAYLOG_HTTP_EXTERNAL_URI=http://192.168.178.44:9002/
+            - /Volumes/docker/docker/graylog/journal:/usr/share/graylog/data/journal   
+            - ./graylog/service-names-port-numbers.csv:/etc/graylog/server/service-names-port-numbers.csv
+        env_file:
+            - ./graylog.env
+        # environment:
+        #     # CHANGE ME!
+        #     #- GRAYLOG_PASSWORD_SECRET=somepasswordpepper
+        #     # Password: admin
+        #     #- GRAYLOG_ROOT_PASSWORD_SHA2=d07cf09e0d9b56c755e2cc97147c8fc63bfd98ea08fac925d40587c5880222f7
+        #     #- GRAYLOG_WEB_ENDPOINT_URI=http://127.0.0.1:9000/api
+        #     - GRAYLOG_ROOT_TIMEZONE=Europe/Amsterdam
+        #     - GRAYLOG_HTTP_EXTERNAL_URI=http://192.168.178.44:9002/
         links:
             - mongodb:mongo
             - elasticsearch
@@ -139,6 +142,14 @@ services:
         ports:
             # Graylog web interface and REST API
             - 9002:9000
+            # Netflow
+            - 2055:2055/udp
+            # Syslog Feed
+            - 5442:5442/udp
+            # Syslog TCP
+            - 1514:1514
+            # Syslog UDP
+            - 1514:1514/udp
             # Syslog TCP
             - 5140:5140
             # Syslog UDP
