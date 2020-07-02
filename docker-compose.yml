@@ -163,6 +163,28 @@ services:
             # GELF UDP
             - 12201:12201/udp
 
+    # Kibana : https://www.elastic.co/guide/en/kibana/6.8/index.html
+    kibana:
+        image: docker.elastic.co/kibana/kibana-oss:6.8.5
+        env_file:
+            - kibana.env
+        depends_on:
+            - elasticsearch
+        ports:
+            - 5601:5601
+    cerebro:
+        image: lmenezes/cerebro:0.9.0
+        ports:
+            - 9001:9000
+        links:
+            - elasticsearch
+        depends_on:
+            - elasticsearch
+        logging:
+        driver: "json-file"
+        options:
+            max-size: "100M"
+
 
 networks:
     webnet: {}
