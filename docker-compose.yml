@@ -1,5 +1,5 @@
 # Docker Compose Yaml 
-version: "3.8"
+version: "2.4"
 services:
     mqtt:
         image: eclipse-mosquitto:1.5.5
