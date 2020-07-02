@@ -76,9 +76,14 @@ services:
         build: ./images/grafana
         image: grafana
         container_name: grafana
-        env_file: configuration.env
+        env_file: 
+            ./grafana.env
         restart: always
+        links: 
+            - elasticsearch
+            - influxdb
         depends_on:
+            - elasticsearch
             - influxdb
         networks:
             - influxdb
@@ -87,6 +92,11 @@ services:
         volumes:
             - /Volumes/docker/docker/grafana/data:/var/lib/grafana
             - /Volumes/docker/docker/grafana/log:/var/log/grafana
+            - ./grafana/provisioning/:/etc/grafana/provisioning
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "100M"
 
     mongodb:
         container_name: mongo
