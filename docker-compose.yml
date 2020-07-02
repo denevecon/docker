@@ -181,9 +181,9 @@ services:
         depends_on:
             - elasticsearch
         logging:
-        driver: "json-file"
-        options:
-            max-size: "100M"
+            driver: "json-file"
+            options:
+                max-size: "100M"
 
 
 networks:
