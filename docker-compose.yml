@@ -137,7 +137,9 @@ services:
 
     graylog:
         container_name: graylog
-        image: graylog/graylog:3.3
+        # image: graylog/graylog:3.3
+        build: 
+            context: ./graylog/.
         volumes:
             - /Volumes/docker/docker/graylog/journal:/usr/share/graylog/data/journal   
             - ./graylog/service-names-port-numbers.csv:/etc/graylog/server/service-names-port-numbers.csv
