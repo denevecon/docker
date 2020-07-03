@@ -41,7 +41,7 @@ services:
 
     influxdb:
         build: ./images/influxdb
-        image: influxdb
+        image: 'influxdb:latest'
         container_name: influxdb
         env_file: 
             - ./influxdb.env
@@ -50,7 +50,7 @@ services:
             - 8086:8086
             - 8082:8082
         networks:
-            - influxdb
+            - lognet
         volumes:
             - /Volumes/docker/docker/influxdb/data:/var/lib/influxdb
         logging:
