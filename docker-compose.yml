@@ -1,5 +1,5 @@
 # Docker Compose Yaml 
-version: "2.4"
+version: "3"
 services:
     mqtt:
         image: eclipse-mosquitto:1.5.5
@@ -109,7 +109,7 @@ services:
     elasticsearch:
         container_name: elasticsearch
         image: docker.elastic.co/elasticsearch/elasticsearch:6.8.5
-        mem_limit: 4g       # Will only run when version is set to 2.x
+        # mem_limit: 4g       # Will only run when version is set to 2.x
         restart: always 
         networks:
             - lognet
@@ -127,6 +127,10 @@ services:
             memlock:
                 soft: -1
                 hard: -1
+        deploy:
+            resources:
+                limits:
+                    memory: 4g
         ports: 
             - 9200:9200     
 
