@@ -142,7 +142,7 @@ services:
             context: ./graylog/.
         volumes:
             - /Volumes/docker/docker/graylog/journal:/usr/share/graylog/data/journal   
-            - ./graylog/service-names-port-numbers.csv:/etc/graylog/server/service-names-port-numbers.csv
+        #    - ./graylog/service-names-port-numbers.csv:/etc/graylog/server/service-names-port-numbers.csv
         env_file:
             - ./graylog.env
         # environment:
