@@ -73,8 +73,8 @@ services:
             - /Volumes/docker/docker/chronograf/data:/var/lib/chronograf/
     
     grafana:
-        build: ./images/grafana
-        image: grafana
+        #build: ./images/grafana
+        image: grafana/grafana:latest
         container_name: grafana
         env_file: 
             ./grafana.env
