@@ -86,7 +86,7 @@ services:
             - elasticsearch
             - influxdb
         networks:
-            - influxdb
+            - lognet
         ports:
             - 3000:3000
         volumes:
@@ -188,6 +188,8 @@ services:
     # Kibana : https://www.elastic.co/guide/en/kibana/6.8/index.html
     kibana:
         image: docker.elastic.co/kibana/kibana-oss:6.8.5
+        networks:
+            - lognet
         env_file:
             - kibana.env
         depends_on:
@@ -196,6 +198,8 @@ services:
             - 5601:5601
     cerebro:
         image: lmenezes/cerebro:0.9.0
+        networks:
+            - lognet
         ports:
             - 9003:9000
         links:
