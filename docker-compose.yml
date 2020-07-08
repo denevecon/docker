@@ -19,6 +19,8 @@ services:
     web:
         image: nginx:1.15
         container_name: my-nginx-container
+        environment: 
+            - TZ=Europe/Amsterdam
         restart: always
         volumes:
             - /Volumes/docker/docker/nginx/www:/usr/share/nginx/html
@@ -215,5 +217,5 @@ services:
 networks:
     webnet: {}
     lognet: {}
-    influxdb: {}
+    #influxdb: {}
 
