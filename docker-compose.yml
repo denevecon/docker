@@ -19,7 +19,7 @@ services:
     web:
         image: nginx:1.15
         container_name: my-nginx-container
-         environment: 
+        environment: 
              - TZ=Europe/Amsterdam
         restart: always
         volumes:
