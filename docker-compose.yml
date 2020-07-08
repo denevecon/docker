@@ -19,8 +19,8 @@ services:
     web:
         image: nginx:1.15
         container_name: my-nginx-container
-        # environment: 
-        #     - TZ=Europe/Amsterdam
+         environment: 
+             - TZ=Europe/Amsterdam
         restart: always
         volumes:
             - /Volumes/docker/docker/nginx/www:/usr/share/nginx/html
@@ -45,6 +45,8 @@ services:
         build: ./images/influxdb
         image: 'influxdb:latest'
         container_name: influxdb
+        environment: 
+            - TZ=Europe/Amsterdam
         env_file: 
             - ./influxdb.env
         restart: always
@@ -63,6 +65,8 @@ services:
     chronograf:
         image: chronograf
         container_name: chronograf
+        environment: 
+            - TZ=Europe/Amsterdam
         restart: always
         entrypoint: 'chronograf --influxdb-url=http://influxdb:8086'
         ports:
@@ -78,6 +82,8 @@ services:
         #build: ./images/grafana
         image: grafana/grafana:latest
         container_name: grafana
+        environment: 
+            - TZ=Europe/Amsterdam
         env_file: 
             ./grafana.env
         restart: always
@@ -103,6 +109,8 @@ services:
     mongodb:
         container_name: mongo
         image: mongo:3
+        environment: 
+            - TZ=Europe/Amsterdam
         networks:
             - lognet
         volumes:
@@ -111,6 +119,8 @@ services:
     elasticsearch:
         container_name: elasticsearch
         image: docker.elastic.co/elasticsearch/elasticsearch:6.8.5
+        environment: 
+            - TZ=Europe/Amsterdam
         mem_limit: 4g       # Will only run when version is set to 2.x
         restart: always 
         networks:
@@ -142,6 +152,8 @@ services:
         # image: graylog/graylog:3.3
         build: 
             context: ./graylog/.
+        environment: 
+            - TZ=Europe/Amsterdam
         volumes:
             - /Volumes/docker/docker/graylog/journal:/usr/share/graylog/data/journal   
         #    - ./graylog/service-names-port-numbers.csv:/etc/graylog/server/service-names-port-numbers.csv
@@ -190,6 +202,8 @@ services:
     # Kibana : https://www.elastic.co/guide/en/kibana/6.8/index.html
     kibana:
         image: docker.elastic.co/kibana/kibana-oss:6.8.5
+        environment: 
+            - TZ=Europe/Amsterdam
         networks:
             - lognet
         env_file:
@@ -200,6 +214,8 @@ services:
             - 5601:5601
     cerebro:
         image: lmenezes/cerebro:0.9.0
+        environment: 
+            - TZ=Europe/Amsterdam
         networks:
             - lognet
         ports:
